@@ -1,0 +1,1976 @@
+{
+  "version": "2.11",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Quran Competition Registration Form",
+      "clip": true,
+      "width": 1440,
+      "height": 2140,
+      "fill": "$surface-primary",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        48,
+        64
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "UmoUd",
+          "name": "Form Hero",
+          "width": "fill_container",
+          "fill": "#0F172A",
+          "cornerRadius": 22,
+          "gap": 30,
+          "padding": [
+            28,
+            30
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "arWs2",
+              "name": "Hero Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "W9QNK",
+                  "name": "Competition Badge",
+                  "fill": "#93C5FD",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "نموذج تسجيل رسمي",
+                  "lineHeight": 1.35,
+                  "textAlign": "right",
+                  "fontFamily": "$font-arabic",
+                  "fontSize": 14,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "o01g4",
+                  "name": "Competition Title",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "المسابقة العالمية الثانية والثلاثون للقران الكريم 1447هـ",
+                  "lineHeight": 1.35,
+                  "textAlign": "right",
+                  "fontFamily": "$font-arabic",
+                  "fontSize": 38,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "text",
+                  "id": "GqwNs",
+                  "name": "Competition Subtitle",
+                  "fill": "#CBD5E1",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "يرجى استكمال البيانات المطلوبة ورفع المستندات.",
+                  "lineHeight": 1.35,
+                  "textAlign": "right",
+                  "fontFamily": "$font-arabic",
+                  "fontSize": 15,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ChPtb",
+          "name": "Personal Section",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": {
+            "thickness": 1,
+            "fill": "$border-soft"
+          },
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 22,
+          "children": [
+            {
+              "type": "frame",
+              "id": "F175w",
+              "name": "Personal Section Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "kFkAr",
+                  "name": "Personal Section Title",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "بيانات المتسابق الأساسية",
+                  "lineHeight": 1.35,
+                  "textAlign": "right",
+                  "fontFamily": "$font-arabic",
+                  "fontSize": 24,
+                  "fontWeight": "900"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KGku7",
+              "name": "Personal Row 1",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "zKZCg",
+                  "name": "الاسم باللغة العربية طبقًا لجواز السفر",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "HtOht",
+                      "name": "الاسم باللغة العربية طبقًا لجواز السفر Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "sMWN7",
+                          "name": "الاسم باللغة العربية طبقًا لجواز السفر Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "الاسم باللغة العربية طبقًا لجواز السفر",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ifGPf",
+                      "name": "الاسم باللغة العربية طبقًا لجواز السفر Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "A7qRcH",
+                          "name": "الاسم باللغة العربية طبقًا لجواز السفر Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "مثال: محمد أحمد علي",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "L8ZiR3",
+                  "name": "الاسم باللغة الإنجليزية أو الفرنسية",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "rfN2W",
+                      "name": "الاسم باللغة الإنجليزية أو الفرنسية Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "w3NQV",
+                          "name": "الاسم باللغة الإنجليزية أو الفرنسية Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "الاسم باللغة الإنجليزية أو الفرنسية",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rlwfH",
+                      "name": "الاسم باللغة الإنجليزية أو الفرنسية Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "h0ZfI",
+                          "name": "الاسم باللغة الإنجليزية أو الفرنسية Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Example: Mohamed Ahmed / Jean-Pierre",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jFHQl",
+              "name": "Personal Row 2",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "M9YB4J",
+                  "name": "الجنسية",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pmag0",
+                      "name": "الجنسية Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "To7R8",
+                          "name": "الجنسية Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "الجنسية",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "w5y0w",
+                      "name": "الجنسية Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "H3BcU",
+                          "name": "الجنسية Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "اختر الجنسية",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "seYXI",
+                  "name": "المهنة",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "TWcFc",
+                      "name": "المهنة Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "xNFas",
+                          "name": "المهنة Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "المهنة",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "CrBNq",
+                      "name": "المهنة Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "j8xJPj",
+                          "name": "المهنة Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "مثال: إمام وخطيب / Teacher",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "J19hD",
+              "name": "Personal Row 3",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "yXZxg",
+                  "name": "المؤهل التعليمي",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "yIzzg",
+                      "name": "المؤهل التعليمي Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "qnrcH",
+                          "name": "المؤهل التعليمي Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "المؤهل التعليمي",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "p8u2oJ",
+                      "name": "المؤهل التعليمي Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "YBP6L",
+                          "name": "المؤهل التعليمي Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "مثال: ليسانس دراسات إسلامية",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "B8f6Hx",
+                  "name": "تاريخ الميلاد",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Jeayv",
+                      "name": "تاريخ الميلاد Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "PpChg",
+                          "name": "تاريخ الميلاد Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "تاريخ الميلاد",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EjdLM",
+                      "name": "تاريخ الميلاد Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "wodKh",
+                          "name": "تاريخ الميلاد Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "اختر تاريخ الميلاد",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "fdeO2",
+          "name": "Passport Residence Section",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": {
+            "thickness": 1,
+            "fill": "$border-soft"
+          },
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 22,
+          "children": [
+            {
+              "type": "frame",
+              "id": "FTCZp",
+              "name": "Passport Residence Section Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "i7emZ",
+                  "name": "Passport Residence Section Title",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "بيانات جواز السفر والإقامة",
+                  "lineHeight": 1.35,
+                  "textAlign": "right",
+                  "fontFamily": "$font-arabic",
+                  "fontSize": 24,
+                  "fontWeight": "900"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "momhh",
+              "name": "Passport Row 1",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "NWoaK",
+                  "name": "رقم جواز السفر",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pXpGk",
+                      "name": "رقم جواز السفر Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "CjsG0",
+                          "name": "رقم جواز السفر Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "رقم جواز السفر",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "w7lRc",
+                      "name": "رقم جواز السفر Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "g14sa8",
+                          "name": "رقم جواز السفر Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "مثال: A1234567",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "B5tl53",
+                  "name": "جهة صدور جواز السفر",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "FOhgv",
+                      "name": "جهة صدور جواز السفر Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "E7ghJ",
+                          "name": "جهة صدور جواز السفر Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "جهة صدور جواز السفر",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "bjdgN",
+                      "name": "جهة صدور جواز السفر Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "F2lOu",
+                          "name": "جهة صدور جواز السفر Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "مثال: مصلحة الجوازات - القاهرة",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Gqh3U",
+              "name": "Passport Row 2",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "U1MMh",
+                  "name": "دولة الإقامة",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ApM4K",
+                      "name": "دولة الإقامة Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "EC2lb",
+                          "name": "دولة الإقامة Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "دولة الإقامة",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vHnrA",
+                      "name": "دولة الإقامة Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "W20H1K",
+                          "name": "دولة الإقامة Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "اختر دولة الإقامة",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zqY9J",
+                  "name": "اللغة الأصلية",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "KEcAd",
+                      "name": "اللغة الأصلية Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "XWX12",
+                          "name": "اللغة الأصلية Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "اللغة الأصلية",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "yFCnk",
+                      "name": "اللغة الأصلية Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "q6irIg",
+                          "name": "اللغة الأصلية Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "اختر اللغة الأصلية",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ZI5hG",
+              "name": "Passport Row 3",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "IhNZA",
+                  "name": "اسم اللغة عند اختيار Other",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "cuJqv",
+                      "name": "اسم اللغة عند اختيار Other Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "cq5ri",
+                          "name": "اسم اللغة عند اختيار Other Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "اسم اللغة عند اختيار Other",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Uhl2g",
+                      "name": "اسم اللغة عند اختيار Other Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "CNjq8",
+                          "name": "اسم اللغة عند اختيار Other Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "اكتب اسم اللغة",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tclaf",
+                  "name": "أقرب خط سير جوي إلى مطار القاهرة الدولي",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "T9gGii",
+                      "name": "أقرب خط سير جوي إلى مطار القاهرة الدولي Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "BU7A0",
+                          "name": "أقرب خط سير جوي إلى مطار القاهرة الدولي Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "أقرب خط سير جوي إلى مطار القاهرة الدولي",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "DR6s0",
+                      "name": "أقرب خط سير جوي إلى مطار القاهرة الدولي Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tphoV",
+                          "name": "أقرب خط سير جوي إلى مطار القاهرة الدولي Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "أدخل خط السير الجوي",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "NtzAu",
+          "name": "Contact Nomination Section",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": {
+            "thickness": 1,
+            "fill": "$border-soft"
+          },
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 22,
+          "children": [
+            {
+              "type": "frame",
+              "id": "lFcNY",
+              "name": "Contact Nomination Section Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Hq99a",
+                  "name": "Contact Nomination Section Title",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "بيانات التواصل والترشيح",
+                  "lineHeight": 1.35,
+                  "textAlign": "right",
+                  "fontFamily": "$font-arabic",
+                  "fontSize": 24,
+                  "fontWeight": "900"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vmUDk",
+              "name": "Contact Row 1",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "pyjA7",
+                  "name": "البريد الإلكتروني",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tjpwd",
+                      "name": "البريد الإلكتروني Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "AjCPx",
+                          "name": "البريد الإلكتروني Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "البريد الإلكتروني",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "c9sAmN",
+                      "name": "البريد الإلكتروني Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "nqnpc",
+                          "name": "البريد الإلكتروني Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "name@example.com",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "VqFwV",
+                  "name": "الجهة المرشحة",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "o0oEkJ",
+                      "name": "الجهة المرشحة Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "qbucU",
+                          "name": "الجهة المرشحة Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "الجهة المرشحة",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UiJXi",
+                      "name": "الجهة المرشحة Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "T2xGK",
+                          "name": "الجهة المرشحة Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "مثال: وزارة الأوقاف",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "VWNJL",
+              "name": "Contact Row 2",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "d5wpa",
+                  "name": "البريد الإلكتروني للجهة المرشحة",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 9,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "HnvV0",
+                      "name": "البريد الإلكتروني للجهة المرشحة Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "vyS7T",
+                          "name": "البريد الإلكتروني للجهة المرشحة Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "البريد الإلكتروني للجهة المرشحة",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "gsOFr",
+                      "name": "البريد الإلكتروني للجهة المرشحة Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface-soft",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        14
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "SkrUL",
+                          "name": "البريد الإلكتروني للجهة المرشحة Input Placeholder",
+                          "fill": "$text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "entity@example.org",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vSCTP",
+          "name": "Uploads Section",
+          "width": "fill_container",
+          "fill": "#FFFFFF",
+          "cornerRadius": 20,
+          "stroke": {
+            "thickness": 1,
+            "fill": "$border-soft"
+          },
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 22,
+          "children": [
+            {
+              "type": "frame",
+              "id": "X7Wh6",
+              "name": "Uploads Section Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "eQ4pU",
+                  "name": "Uploads Section Title",
+                  "fill": "$text-primary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "المرفقات المطلوبة",
+                  "lineHeight": 1.35,
+                  "textAlign": "right",
+                  "fontFamily": "$font-arabic",
+                  "fontSize": 24,
+                  "fontWeight": "900"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "VNn8p",
+              "name": "Uploads Row 1",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "YW9IC",
+                  "name": "صورة من جواز السفر",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 10,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "LHpdG",
+                      "name": "صورة من جواز السفر Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "i2yt1X",
+                          "name": "صورة من جواز السفر Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "صورة من جواز السفر",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "RpIvo",
+                      "name": "صورة من جواز السفر Dropzone",
+                      "width": "fill_container",
+                      "height": 92,
+                      "fill": "#F8FAFC",
+                      "cornerRadius": 14,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zO5Hi",
+                          "name": "صورة من جواز السفر Upload CTA",
+                          "fill": "$accent-blue",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "اسحب الملف هنا أو اختر من الجهاز",
+                          "lineHeight": 1.35,
+                          "textAlign": "center",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "U2COEk",
+                  "name": "عدد 2 صور شخصية",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 10,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "dloay",
+                      "name": "عدد 2 صور شخصية Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "yPzWp",
+                          "name": "عدد 2 صور شخصية Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "عدد 2 صور شخصية",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "BeU3d",
+                      "name": "عدد 2 صور شخصية Dropzone",
+                      "width": "fill_container",
+                      "height": 92,
+                      "fill": "#F8FAFC",
+                      "cornerRadius": 14,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "NpQ6z",
+                          "name": "عدد 2 صور شخصية Upload CTA",
+                          "fill": "$accent-blue",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "اسحب الملف هنا أو اختر من الجهاز",
+                          "lineHeight": 1.35,
+                          "textAlign": "center",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "b8xZr",
+              "name": "Uploads Row 2",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ZEmjt",
+                  "name": "صورة توقيع المرشح",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 10,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f1ydD",
+                      "name": "صورة توقيع المرشح Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "q6kkpg",
+                          "name": "صورة توقيع المرشح Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "صورة توقيع المرشح",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "r1uAE",
+                      "name": "صورة توقيع المرشح Dropzone",
+                      "width": "fill_container",
+                      "height": 92,
+                      "fill": "#F8FAFC",
+                      "cornerRadius": 14,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "z9cZ7",
+                          "name": "صورة توقيع المرشح Upload CTA",
+                          "fill": "$accent-blue",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "اسحب الملف هنا أو اختر من الجهاز",
+                          "lineHeight": 1.35,
+                          "textAlign": "center",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "aylyn",
+                  "name": "مصادقة الجهة المرشحة",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "layout": "vertical",
+                  "gap": 10,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "w9VCTs",
+                      "name": "مصادقة الجهة المرشحة Header",
+                      "width": "fill_container",
+                      "gap": 12,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "W6i28",
+                          "name": "مصادقة الجهة المرشحة Label",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "مصادقة الجهة المرشحة",
+                          "lineHeight": 1.35,
+                          "textAlign": "right",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 15,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "bBl3m",
+                      "name": "مصادقة الجهة المرشحة Dropzone",
+                      "width": "fill_container",
+                      "height": 92,
+                      "fill": "#F8FAFC",
+                      "cornerRadius": 14,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-soft"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MGcP8",
+                          "name": "مصادقة الجهة المرشحة Upload CTA",
+                          "fill": "$accent-blue",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "اسحب الملف هنا أو اختر من الجهاز",
+                          "lineHeight": 1.35,
+                          "textAlign": "center",
+                          "fontFamily": "$font-arabic",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Vq2zC",
+          "name": "Form Actions",
+          "width": "fill_container",
+          "fill": "$surface-card",
+          "cornerRadius": 20,
+          "stroke": {
+            "thickness": 1,
+            "fill": "$border-soft"
+          },
+          "gap": 20,
+          "padding": [
+            22,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "rg4ji",
+              "name": "Form Consent",
+              "fill": "$text-secondary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "بالضغط على إرسال، يقر المتسابق بصحة البيانات ومطابقتها للمستندات الرسمية.",
+              "lineHeight": 1.35,
+              "textAlign": "right",
+              "fontFamily": "$font-arabic",
+              "fontSize": 13,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "TOGvs",
+              "name": "Action Buttons",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "VGAJv",
+                  "name": "Save Draft Button",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-soft"
+                  },
+                  "padding": [
+                    13,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "uJhN2",
+                      "name": "Save Draft Label",
+                      "fill": "$text-primary",
+                      "content": "حفظ كمسودة",
+                      "lineHeight": 1.35,
+                      "textAlign": "center",
+                      "fontFamily": "$font-arabic",
+                      "fontSize": 14,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "JHCze",
+                  "name": "Submit Button",
+                  "fill": "$accent-blue",
+                  "cornerRadius": 12,
+                  "padding": [
+                    14,
+                    26
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zG4gT",
+                      "name": "Submit Label",
+                      "fill": "#FFFFFF",
+                      "content": "إرسال الطلب",
+                      "lineHeight": 1.35,
+                      "textAlign": "center",
+                      "fontFamily": "$font-arabic",
+                      "fontSize": 14,
+                      "fontWeight": "900"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "accent-blue": {
+      "type": "color",
+      "value": "#0B5FFF"
+    },
+    "accent-gold": {
+      "type": "color",
+      "value": "#B7791F"
+    },
+    "accent-green": {
+      "type": "color",
+      "value": "#0E9F6E"
+    },
+    "border-soft": {
+      "type": "color",
+      "value": "#DDE3EA"
+    },
+    "error-red": {
+      "type": "color",
+      "value": "#C2410C"
+    },
+    "font-arabic": {
+      "type": "string",
+      "value": "Noto Sans Arabic"
+    },
+    "font-latin": {
+      "type": "string",
+      "value": "Inter"
+    },
+    "font-mono": {
+      "type": "string",
+      "value": "Geist Mono"
+    },
+    "surface-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "surface-primary": {
+      "type": "color",
+      "value": "#F7F8FA"
+    },
+    "surface-soft": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#6B7280"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": "#111827"
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": "#4B5563"
+    }
+  }
+}
