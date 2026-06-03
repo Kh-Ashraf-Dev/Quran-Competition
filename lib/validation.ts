@@ -1,4 +1,5 @@
 import { countries, languages, OTHER_LANGUAGE_VALUE } from "./data";
+import { Locale, translations } from "./i18n";
 
 export const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
@@ -38,31 +39,26 @@ const patterns = {
 export const fileRules: Record<FileFieldName, {
   extensions: string[];
   exactCount: number;
-  label: string;
   mimes: string[];
 }> = {
   passportCopy: {
     extensions: ["jpg", "jpeg", "png", "pdf"],
     exactCount: 1,
-    label: "صورة من جواز السفر",
     mimes: ["image/jpeg", "image/png", "application/pdf"],
   },
   personalPhotos: {
     extensions: ["jpg", "jpeg", "png"],
     exactCount: 2,
-    label: "عدد 2 صور شخصية",
     mimes: ["image/jpeg", "image/png"],
   },
   signatureImage: {
     extensions: ["jpg", "jpeg", "png", "pdf"],
     exactCount: 1,
-    label: "صورة توقيع المرشح",
     mimes: ["image/jpeg", "image/png", "application/pdf"],
   },
   endorsementFile: {
     extensions: ["jpg", "jpeg", "png", "pdf"],
     exactCount: 1,
-    label: "مصادقة الجهة المرشحة",
     mimes: ["image/jpeg", "image/png", "application/pdf"],
   },
 };
@@ -101,48 +97,51 @@ export function normalizeValues(values: FormValues): FormValues {
   return normalized;
 }
 
-export function validateValues(values: FormValues): FieldErrors {
+export function validateValues(values: FormValues, locale: Locale = "ar"): FieldErrors {
   const errors: FieldErrors = {};
+  const t = translations[locale].validation;
 
-  requirePattern(errors, "arabicName", values.arabicName, patterns.arabicName, "اكتب الاسم بحروف عربية فقط وبدون رموز أو أرقام.");
-  requirePattern(errors, "latinName", values.latinName, patterns.latinName, "اكتب الاسم بحروف إنجليزية/فرنسية فقط مع السماح بالمسافة والشرطة و apostrophe.");
-  requireSelect(errors, "nationality", values.nationality, countryCodes, "اختر جنسية صحيحة من القائمة.");
-  requireBoundedPattern(errors, "occupation", values.occupation, patterns.mixedText, 2, 100, "المهنة يجب أن تكون من 2 إلى 100 حرف وبالرموز المسموحة فقط.");
-  requireBoundedPattern(errors, "education", values.education, patterns.mixedText, 2, 100, "المؤهل يجب أن يكون من 2 إلى 100 حرف وبالرموز المسموحة فقط.");
-  validateDateOfBirth(errors, values.dateOfBirth);
-  validatePassport(errors, values.passportNumber);
-  requireBoundedPattern(errors, "passportIssuePlace", values.passportIssuePlace, patterns.mixedText, 2, 150, "جهة الإصدار يجب أن تكون من 2 إلى 150 حرف وبالرموز المسموحة فقط.");
-  validateIssuePlaceNotNationality(errors, values.passportIssuePlace, values.nationality);
-  requireSelect(errors, "residenceCountry", values.residenceCountry, countryCodes, "اختر دولة إقامة صحيحة من القائمة.");
-  requireSelect(errors, "nativeLanguage", values.nativeLanguage, languageCodes, "اختر اللغة الأصلية من القائمة.");
+  requirePattern(errors, "arabicName", values.arabicName, patterns.arabicName, t.arabicName);
+  requirePattern(errors, "latinName", values.latinName, patterns.latinName, t.latinName);
+  requireSelect(errors, "nationality", values.nationality, countryCodes, t.nationality);
+  requireBoundedPattern(errors, "occupation", values.occupation, patterns.mixedText, 2, 100, t.occupation);
+  requireBoundedPattern(errors, "education", values.education, patterns.mixedText, 2, 100, t.education);
+  validateDateOfBirth(errors, values.dateOfBirth, locale);
+  validatePassport(errors, values.passportNumber, locale);
+  requireBoundedPattern(errors, "passportIssuePlace", values.passportIssuePlace, patterns.mixedText, 2, 150, t.issuePlace);
+  validateIssuePlaceNotNationality(errors, values.passportIssuePlace, values.nationality, locale);
+  requireSelect(errors, "residenceCountry", values.residenceCountry, countryCodes, t.residenceCountry);
+  requireSelect(errors, "nativeLanguage", values.nativeLanguage, languageCodes, t.nativeLanguage);
 
   if (values.nativeLanguage === OTHER_LANGUAGE_VALUE) {
-    requireBoundedPattern(errors, "otherLanguage", values.otherLanguage, patterns.otherLanguage, 2, 80, "اسم اللغة يجب أن يكون حروفًا فقط مع المسافة أو الشرطة أو apostrophe، من 2 إلى 80 حرفًا.");
+    requireBoundedPattern(errors, "otherLanguage", values.otherLanguage, patterns.otherLanguage, 2, 80, t.otherLanguage);
   }
 
-  requirePattern(errors, "email", values.email, patterns.email, "اكتب بريدًا إلكترونيًا صحيحًا بحد أقصى 254 حرفًا.");
-  requireBoundedPattern(errors, "nominatingEntity", values.nominatingEntity, patterns.nominatingEntity, 2, 150, "الجهة المرشحة يجب أن تكون من 2 إلى 150 حرف وبالرموز المسموحة فقط.");
-  requirePattern(errors, "nominatingEntityEmail", values.nominatingEntityEmail, patterns.email, "اكتب بريد الجهة المرشحة بصيغة صحيحة.");
-  validateFlightRoute(errors, values.flightRoute);
+  requirePattern(errors, "email", values.email, patterns.email, t.email);
+  requireBoundedPattern(errors, "nominatingEntity", values.nominatingEntity, patterns.nominatingEntity, 2, 150, t.nominatingEntity);
+  requirePattern(errors, "nominatingEntityEmail", values.nominatingEntityEmail, patterns.email, t.entityEmail);
+  validateFlightRoute(errors, values.flightRoute, locale);
 
   return errors;
 }
 
-export async function validateFiles(files: FileState): Promise<FieldErrors> {
+export async function validateFiles(files: FileState, locale: Locale = "ar"): Promise<FieldErrors> {
   const errors: FieldErrors = {};
+  const t = translations[locale].validation;
 
   for (const [fieldName, rule] of Object.entries(fileRules) as [FileFieldName, typeof fileRules[FileFieldName]][]) {
     const currentFiles = files[fieldName];
+    const fieldLabel = translations[locale].uploads[fieldName];
 
     if (currentFiles.length !== rule.exactCount) {
       errors[fieldName] = rule.exactCount === 1
-        ? `${rule.label} مطلوب.`
-        : `يجب رفع ${rule.exactCount} ملفات بالضبط في حقل ${rule.label}.`;
+        ? t.exactOne(fieldLabel)
+        : t.exactMany(rule.exactCount, fieldLabel);
       continue;
     }
 
     for (const file of currentFiles) {
-      const fileError = await validateFile(file, rule);
+      const fileError = await validateFile(file, rule, locale);
       if (fileError) {
         errors[fieldName] = fileError;
         break;
@@ -165,9 +164,11 @@ function requireBoundedPattern(errors: FieldErrors, fieldName: keyof FormValues,
   if (!value || value.length < min || value.length > max || !pattern.test(value)) errors[fieldName] = message;
 }
 
-function validateDateOfBirth(errors: FieldErrors, value: string) {
+function validateDateOfBirth(errors: FieldErrors, value: string, locale: Locale) {
+  const t = translations[locale].validation;
+
   if (!value) {
-    errors.dateOfBirth = "أدخل تاريخ الميلاد.";
+    errors.dateOfBirth = t.dateOfBirthRequired;
     return;
   }
 
@@ -175,28 +176,30 @@ function validateDateOfBirth(errors: FieldErrors, value: string) {
   const today = startOfDay(new Date());
 
   if (!birthDate || birthDate > today) {
-    errors.dateOfBirth = "تاريخ الميلاد يجب أن يكون تاريخًا صحيحًا وليس في المستقبل.";
+    errors.dateOfBirth = t.dateOfBirthInvalid;
     return;
   }
 
   const minimumBirthDate = startOfDay(new Date(today));
   minimumBirthDate.setFullYear(minimumBirthDate.getFullYear() - 30);
 
-  if (birthDate > minimumBirthDate) errors.dateOfBirth = "يشترط أن يكون عمر المتقدم 30 سنة أو أكثر.";
+  if (birthDate > minimumBirthDate) errors.dateOfBirth = t.ageRequirement;
 }
 
-function validatePassport(errors: FieldErrors, value: string) {
+function validatePassport(errors: FieldErrors, value: string, locale: Locale) {
+  const t = translations[locale].validation;
+
   if (!value || !patterns.passport.test(value)) {
-    errors.passportNumber = "رقم الجواز يجب أن يكون 5 إلى 20 خانة من A-Z و 0-9 والمسافة والشرطة، ولا يبدأ أو ينتهي بمسافة أو شرطة.";
+    errors.passportNumber = t.passportNumber;
     return;
   }
 
   if (/^0+$/.test(value.replace(/[ -]/g, ""))) {
-    errors.passportNumber = "رقم الجواز لا يمكن أن يكون كله أصفارًا.";
+    errors.passportNumber = t.passportAllZeros;
   }
 }
 
-function validateIssuePlaceNotNationality(errors: FieldErrors, issuePlace: string, nationalityCode: string) {
+function validateIssuePlaceNotNationality(errors: FieldErrors, issuePlace: string, nationalityCode: string, locale: Locale) {
   if (errors.passportIssuePlace || !issuePlace || !nationalityCode) return;
 
   const country = countries.find(([code]) => code === nationalityCode);
@@ -204,31 +207,34 @@ function validateIssuePlaceNotNationality(errors: FieldErrors, issuePlace: strin
   const normalizedCountryName = country ? normalizeForCompare(country[1]) : "";
 
   if (normalizedIssuePlace === nationalityCode.toLowerCase() || normalizedIssuePlace === normalizedCountryName) {
-    errors.passportIssuePlace = "جهة صدور جواز السفر يجب ألا تكون نفس الجنسية فقط؛ اكتب جهة الإصدار الفعلية.";
+    errors.passportIssuePlace = translations[locale].validation.issuePlaceNotNationality;
   }
 }
 
-function validateFlightRoute(errors: FieldErrors, value: string) {
+function validateFlightRoute(errors: FieldErrors, value: string, locale: Locale) {
+  const t = translations[locale].validation;
+
   if (!value || /\s/.test(value) || !patterns.route.test(value)) {
-    errors.flightRoute = "خط السير يجب أن يكون مثل AAA-AAA-CAI أو AAA/AAA/CAI، من 2 إلى 10 مطارات وبدون مسافات.";
+    errors.flightRoute = t.flightRoute;
     return;
   }
 
   const stops = value.split(/[-/]/);
-  if (stops.at(-1) !== "CAI") errors.flightRoute = "آخر محطة في خط السير يجب أن تكون CAI.";
+  if (stops.at(-1) !== "CAI") errors.flightRoute = t.flightRouteCairo;
 }
 
-async function validateFile(file: File, rule: typeof fileRules[FileFieldName]) {
+async function validateFile(file: File, rule: typeof fileRules[FileFieldName], locale: Locale) {
+  const t = translations[locale].validation;
   const extension = getFileExtension(file.name);
 
-  if (!rule.extensions.includes(extension)) return `${file.name}: امتداد الملف غير مسموح.`;
-  if (file.type && !rule.mimes.includes(file.type)) return `${file.name}: نوع الملف غير مسموح.`;
-  if (file.size > MAX_FILE_SIZE) return `${file.name}: حجم الملف يتجاوز 5MB.`;
+  if (!rule.extensions.includes(extension)) return t.extension(file.name);
+  if (file.type && !rule.mimes.includes(file.type)) return t.fileType(file.name);
+  if (file.size > MAX_FILE_SIZE) return t.fileSize(file.name);
 
   const signature = await getFileSignature(file);
   const actualType = detectFileType(signature);
 
-  if (!actualType || !rule.mimes.includes(actualType)) return `${file.name}: توقيع الملف لا يطابق الأنواع المسموحة.`;
+  if (!actualType || !rule.mimes.includes(actualType)) return t.fileSignature(file.name);
 
   return "";
 }

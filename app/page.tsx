@@ -1,7 +1,8 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useMemo, useState } from "react";
-import { countries, languages, OTHER_LANGUAGE_VALUE } from "../lib/data";
+import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
+import { countries, languages } from "../lib/data";
+import { Locale, localeCodes, localeMeta, translations } from "../lib/i18n";
 import {
   FieldErrors,
   FileFieldName,
@@ -24,47 +25,45 @@ const uploadFields: {
   accept: string;
   multiple?: boolean;
   name: FileFieldName;
-  title: string;
 }[] = [
   {
     accept: ".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf",
     name: "passportCopy",
-    title: "صورة من جواز السفر",
   },
   {
     accept: ".jpg,.jpeg,.png,image/jpeg,image/png",
     multiple: true,
     name: "personalPhotos",
-    title: "عدد 2 صور شخصية",
   },
   {
     accept: ".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf",
     name: "signatureImage",
-    title: "صورة توقيع المرشح",
   },
   {
     accept: ".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf",
     name: "endorsementFile",
-    title: "مصادقة الجهة المرشحة",
   },
 ];
 
+type StatusKey = "" | "invalid" | "ready";
+
 export default function Home() {
+  const [locale, setLocale] = useState<Locale>("ar");
   const [values, setValues] = useState<FormValues>(initialValues);
   const [files, setFiles] = useState<FileState>(emptyFiles);
   const [errors, setErrors] = useState<FieldErrors>({});
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<StatusKey>("");
   const [isReady, setIsReady] = useState(false);
+  const t = translations[locale];
+  const meta = localeMeta[locale];
+  const countryOptions = useMemo(() => getCountryOptions(locale), [locale]);
+  const nativeLanguageOptions = useMemo(() => getNativeLanguageOptions(locale), [locale]);
+  const statusMessage = status ? t.status[status] : "";
 
-  const normalizedCompletion = useMemo(() => {
-    const textTotal = values.nativeLanguage === OTHER_LANGUAGE_VALUE ? 15 : 14;
-    const textDone = Object.entries(values).filter(([key, value]) => {
-      if (key === "otherLanguage" && values.nativeLanguage !== OTHER_LANGUAGE_VALUE) return false;
-      return value.trim().length > 0;
-    }).length;
-    const filesDone = Object.values(files).filter((entry) => entry.length > 0).length;
-    return Math.round(((textDone + filesDone) / (textTotal + 4)) * 100);
-  }, [files, values]);
+  useEffect(() => {
+    document.documentElement.lang = meta.lang;
+    document.documentElement.dir = meta.dir;
+  }, [meta.dir, meta.lang]);
 
   function updateValue(name: keyof FormValues, value: string) {
     setValues((current) => ({ ...current, [name]: value }));
@@ -83,6 +82,18 @@ export default function Home() {
     setValues((current) => ({ ...current, [name]: normalized[name] }));
   }
 
+  async function updateLocale(nextLocale: Locale) {
+    setLocale(nextLocale);
+
+    if (Object.keys(errors).length === 0) return;
+
+    const normalized = normalizeValues(values);
+    setErrors({
+      ...validateValues(normalized, nextLocale),
+      ...(await validateFiles(files, nextLocale)),
+    });
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -90,14 +101,14 @@ export default function Home() {
     setValues(normalized);
 
     const nextErrors = {
-      ...validateValues(normalized),
-      ...(await validateFiles(files)),
+      ...validateValues(normalized, locale),
+      ...(await validateFiles(files, locale)),
     };
 
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
-      setStatus("يرجى تصحيح الحقول المحددة قبل الإرسال.");
+      setStatus("invalid");
       setIsReady(false);
       requestAnimationFrame(() => {
         const firstError = document.querySelector("[data-error='true'] input, [data-error='true'] select") as HTMLElement | null;
@@ -118,47 +129,42 @@ export default function Home() {
 
     window.dispatchEvent(new CustomEvent("quran-competition-form:ready", { detail: payload }));
     console.info("Quran competition payload", payload);
-    setStatus("تم التحقق من البيانات وتجهيز الطلب للإرسال.");
+    setStatus("ready");
     setIsReady(true);
   }
 
   return (
-    <main className="page-shell">
+    <main className="page-shell" data-locale={locale} dir={meta.dir} lang={meta.lang}>
       <section className="form-hero" aria-labelledby="page-title">
         <div className="hero-text">
-          <p>نموذج تسجيل رسمي</p>
-          <h1 id="page-title">المسابقة العالمية الثانية والثلاثون للقران الكريم 1447هـ</h1>
-          <span>يرجى استكمال البيانات المطلوبة ورفع المستندات.</span>
+          <p>{t.hero.badge}</p>
+          <h1 id="page-title">{t.hero.title}</h1>
+          <span>{t.hero.subtitle}</span>
+          <LanguageSelector locale={locale} onChange={updateLocale} />
         </div>
-        <div className="hero-progress" aria-label="نسبة اكتمال الطلب">
-          <strong>{normalizedCompletion}%</strong>
-          <small>اكتمال الطلب</small>
-          <div>
-            <span style={{ width: `${normalizedCompletion}%` }} />
-          </div>
-        </div>
+        <img className="hero-logo" src="/image.png" alt={t.hero.logoAlt} width={224} height={218} />
       </section>
 
       <form className="registration-form" onSubmit={handleSubmit} noValidate>
-        <FormSection title="بيانات المتسابق الأساسية">
+        <FormSection title={t.sections.personal}>
           <div className="field-row">
             <TextField
               error={errors.arabicName}
-              label="الاسم باللغة العربية طبقًا لجواز السفر"
+              label={t.fields.arabicName.label}
               name="arabicName"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="مثال: محمد أحمد علي"
+              placeholder={t.fields.arabicName.placeholder}
               value={values.arabicName}
             />
             <TextField
               dir="ltr"
               error={errors.latinName}
-              label="الاسم باللغة الإنجليزية أو الفرنسية"
+              label={t.fields.latinName.label}
               name="latinName"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="Example: Mohamed Ahmed / Jean-Pierre"
+              placeholder={t.fields.latinName.placeholder}
               value={values.latinName}
             />
           </div>
@@ -166,20 +172,20 @@ export default function Home() {
           <div className="field-row">
             <SelectField
               error={errors.nationality}
-              label="الجنسية"
+              label={t.fields.nationality.label}
               name="nationality"
               onChange={updateValue}
-              options={countries}
-              placeholder="اختر الجنسية"
+              options={countryOptions}
+              placeholder={t.fields.nationality.placeholder}
               value={values.nationality}
             />
             <TextField
               error={errors.occupation}
-              label="المهنة"
+              label={t.fields.occupation.label}
               name="occupation"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="مثال: إمام وخطيب / Teacher"
+              placeholder={t.fields.occupation.placeholder}
               value={values.occupation}
             />
           </div>
@@ -187,45 +193,45 @@ export default function Home() {
           <div className="field-row">
             <TextField
               error={errors.education}
-              label="المؤهل التعليمي"
+              label={t.fields.education.label}
               name="education"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="مثال: ليسانس دراسات إسلامية"
+              placeholder={t.fields.education.placeholder}
               value={values.education}
             />
             <TextField
               error={errors.dateOfBirth}
-              label="تاريخ الميلاد"
+              label={t.fields.dateOfBirth.label}
               name="dateOfBirth"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="اختر تاريخ الميلاد"
+              placeholder={t.fields.dateOfBirth.placeholder}
               type="date"
               value={values.dateOfBirth}
             />
           </div>
         </FormSection>
 
-        <FormSection title="بيانات جواز السفر والإقامة">
+        <FormSection title={t.sections.passport}>
           <div className="field-row">
             <TextField
               dir="ltr"
               error={errors.passportNumber}
-              label="رقم جواز السفر"
+              label={t.fields.passportNumber.label}
               name="passportNumber"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="مثال: A1234567"
+              placeholder={t.fields.passportNumber.placeholder}
               value={values.passportNumber}
             />
             <TextField
               error={errors.passportIssuePlace}
-              label="جهة صدور جواز السفر"
+              label={t.fields.passportIssuePlace.label}
               name="passportIssuePlace"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="مثال: مصلحة الجوازات - القاهرة"
+              placeholder={t.fields.passportIssuePlace.placeholder}
               value={values.passportIssuePlace}
             />
           </div>
@@ -233,20 +239,20 @@ export default function Home() {
           <div className="field-row">
             <SelectField
               error={errors.residenceCountry}
-              label="دولة الإقامة"
+              label={t.fields.residenceCountry.label}
               name="residenceCountry"
               onChange={updateValue}
-              options={countries}
-              placeholder="اختر دولة الإقامة"
+              options={countryOptions}
+              placeholder={t.fields.residenceCountry.placeholder}
               value={values.residenceCountry}
             />
             <SelectField
               error={errors.nativeLanguage}
-              label="اللغة الأصلية"
+              label={t.fields.nativeLanguage.label}
               name="nativeLanguage"
               onChange={updateValue}
-              options={languages}
-              placeholder="اختر اللغة الأصلية"
+              options={nativeLanguageOptions}
+              placeholder={t.fields.nativeLanguage.placeholder}
               value={values.nativeLanguage}
             />
           </div>
@@ -254,46 +260,46 @@ export default function Home() {
           <div className="field-row">
             <TextField
               error={errors.otherLanguage}
-              label="اسم اللغة عند اختيار Other"
+              label={t.fields.otherLanguage.label}
               name="otherLanguage"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="اكتب اسم اللغة"
+              placeholder={t.fields.otherLanguage.placeholder}
               value={values.otherLanguage}
             />
             <TextField
               dir="ltr"
               error={errors.flightRoute}
-              label="أقرب خط سير جوي إلى مطار القاهرة الدولي"
+              label={t.fields.flightRoute.label}
               name="flightRoute"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="أدخل خط السير الجوي"
+              placeholder={t.fields.flightRoute.placeholder}
               value={values.flightRoute}
             />
           </div>
         </FormSection>
 
-        <FormSection title="بيانات التواصل والترشيح">
+        <FormSection title={t.sections.contact}>
           <div className="field-row">
             <TextField
               dir="ltr"
               error={errors.email}
-              label="البريد الإلكتروني"
+              label={t.fields.email.label}
               name="email"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="name@example.com"
+              placeholder={t.fields.email.placeholder}
               type="email"
               value={values.email}
             />
             <TextField
               error={errors.nominatingEntity}
-              label="الجهة المرشحة"
+              label={t.fields.nominatingEntity.label}
               name="nominatingEntity"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="مثال: وزارة الأوقاف"
+              placeholder={t.fields.nominatingEntity.placeholder}
               value={values.nominatingEntity}
             />
           </div>
@@ -302,18 +308,18 @@ export default function Home() {
             <TextField
               dir="ltr"
               error={errors.nominatingEntityEmail}
-              label="البريد الإلكتروني للجهة المرشحة"
+              label={t.fields.nominatingEntityEmail.label}
               name="nominatingEntityEmail"
               onBlur={normalizeField}
               onChange={updateValue}
-              placeholder="entity@example.org"
+              placeholder={t.fields.nominatingEntityEmail.placeholder}
               type="email"
               value={values.nominatingEntityEmail}
             />
           </div>
         </FormSection>
 
-        <FormSection title="المرفقات المطلوبة">
+        <FormSection title={t.sections.uploads}>
           <div className="upload-row">
             {uploadFields.slice(0, 2).map((field) => (
               <UploadField
@@ -321,7 +327,10 @@ export default function Home() {
                 {...field}
                 error={errors[field.name]}
                 files={files[field.name]}
+                hint={t.fileHint}
                 onChange={updateFile}
+                title={t.uploads[field.name]}
+                uploadCta={t.uploadCta}
               />
             ))}
           </div>
@@ -332,17 +341,20 @@ export default function Home() {
                 {...field}
                 error={errors[field.name]}
                 files={files[field.name]}
+                hint={t.fileHint}
                 onChange={updateFile}
+                title={t.uploads[field.name]}
+                uploadCta={t.uploadCta}
               />
             ))}
           </div>
         </FormSection>
 
         <section className="form-actions">
-          <p className={isReady ? "success" : ""}>{status || "بالضغط على إرسال، يقر المتسابق بصحة البيانات ومطابقتها للمستندات الرسمية."}</p>
+          <p className={isReady ? "success" : ""}>{statusMessage || t.form.consent}</p>
           <div>
-            <button className="secondary-button" type="button">حفظ كمسودة</button>
-            <button type="submit">إرسال الطلب</button>
+            <button className="secondary-button" type="button">{t.actions.saveDraft}</button>
+            <button type="submit">{t.actions.submit}</button>
           </div>
         </section>
       </form>
@@ -358,6 +370,29 @@ function FormSection({ children, title }: { children: React.ReactNode; title: st
       </header>
       <div className="section-body">{children}</div>
     </section>
+  );
+}
+
+function LanguageSelector({ locale, onChange }: { locale: Locale; onChange: (locale: Locale) => void }) {
+  const t = translations[locale];
+
+  return (
+    <div className="language-selector" aria-label={t.language.label}>
+      <span>{t.language.label}</span>
+      <div role="group">
+        {localeCodes.map((code) => (
+          <button
+            aria-pressed={locale === code}
+            className={locale === code ? "active" : ""}
+            key={code}
+            onClick={() => onChange(code)}
+            type="button"
+          >
+            {t.language.options[code]}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -436,28 +471,53 @@ function UploadField({
   accept,
   error,
   files,
+  hint,
   multiple,
   name,
   onChange,
   title,
+  uploadCta,
 }: {
   accept: string;
   error?: string;
   files: File[];
+  hint: string;
   multiple?: boolean;
   name: FileFieldName;
   onChange: (name: FileFieldName, event: ChangeEvent<HTMLInputElement>) => void;
   title: string;
+  uploadCta: string;
 }) {
   return (
     <label className="upload-card" data-error={Boolean(error)}>
       <span>{title}</span>
       <input accept={accept} multiple={multiple} name={name} onChange={(event) => onChange(name, event)} type="file" />
       <span className="dropzone">
-        <b>اسحب الملف هنا أو اختر من الجهاز</b>
-        <small>{files.length > 0 ? files.map((file) => file.name).join("، ") : "JPG, PNG, PDF حسب نوع الحقل"}</small>
+        <b>{uploadCta}</b>
+        <small>{files.length > 0 ? files.map((file) => file.name).join("، ") : hint}</small>
       </span>
       {error && <strong>{error}</strong>}
     </label>
   );
+}
+
+function getCountryOptions(locale: Locale) {
+  const fallback = new Map(countries);
+
+  try {
+    const displayNames = new Intl.DisplayNames([localeMeta[locale].countryLocale], { type: "region" });
+    return countries.map(([code]) => [code, displayNames.of(code) ?? fallback.get(code) ?? code] as const);
+  } catch {
+    return countries;
+  }
+}
+
+function getNativeLanguageOptions(locale: Locale) {
+  const otherLabels: Record<Locale, string> = {
+    ar: "Other",
+    en: "Other",
+    fr: "Autre",
+  };
+
+  return languages.map(([code, label]) => [code, code === "OTHER" ? otherLabels[locale] : label] as const);
 }
