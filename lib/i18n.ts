@@ -11,8 +11,8 @@ export const localeMeta: Record<Locale, { countryLocale: string; dir: "ltr" | "r
 export const translations = {
   ar: {
     actions: {
-      saveDraft: "حفظ كمسودة",
       submit: "إرسال الطلب",
+      submitting: "جارٍ الإرسال...",
     },
     fields: {
       arabicName: {
@@ -101,8 +101,11 @@ export const translations = {
       uploads: "المرفقات المطلوبة",
     },
     status: {
+      failed: "تعذر إرسال الطلب. يرجى المحاولة مرة أخرى.",
       invalid: "يرجى تصحيح الحقول المحددة قبل الإرسال.",
       ready: "تم التحقق من البيانات وتجهيز الطلب للإرسال.",
+      submitted: "تم إرسال الطلب بنجاح.",
+      submitting: "جارٍ إرسال الطلب...",
     },
     uploads: {
       endorsementFile: "مصادقة الجهة المرشحة",
@@ -110,7 +113,7 @@ export const translations = {
       personalPhotos: "عدد 2 صور شخصية",
       signatureImage: "صورة توقيع المرشح",
     },
-    uploadCta: "اسحب الملف هنا أو اختر من الجهاز",
+    uploadCta: "اختر ملف من الجهاز",
     validation: {
       ageRequirement: "يشترط أن يكون عمر المتقدم 30 سنة أو أكثر.",
       arabicName: "اكتب الاسم بحروف عربية فقط وبدون رموز أو أرقام.",
@@ -144,6 +147,7 @@ export const translations = {
     actions: {
       saveDraft: "Save draft",
       submit: "Submit application",
+      submitting: "Submitting...",
     },
     fields: {
       arabicName: {
@@ -232,8 +236,11 @@ export const translations = {
       uploads: "Required Attachments",
     },
     status: {
+      failed: "The application could not be submitted. Please try again.",
       invalid: "Please correct the highlighted fields before submitting.",
       ready: "The information has been validated and the application is ready to submit.",
+      submitted: "Application submitted successfully.",
+      submitting: "Submitting the application...",
     },
     uploads: {
       endorsementFile: "Nominating entity certification",
@@ -275,6 +282,7 @@ export const translations = {
     actions: {
       saveDraft: "Enregistrer le brouillon",
       submit: "Envoyer la demande",
+      submitting: "Envoi...",
     },
     fields: {
       arabicName: {
@@ -363,8 +371,11 @@ export const translations = {
       uploads: "Pièces jointes requises",
     },
     status: {
+      failed: "La demande n'a pas pu être envoyée. Veuillez réessayer.",
       invalid: "Veuillez corriger les champs indiqués avant l'envoi.",
       ready: "Les informations ont été vérifiées et la demande est prête à être envoyée.",
+      submitted: "Demande envoyée avec succès.",
+      submitting: "Envoi de la demande...",
     },
     uploads: {
       endorsementFile: "Certification de l'organisme de nomination",

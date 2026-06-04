@@ -204,9 +204,9 @@ function validateIssuePlaceNotNationality(errors: FieldErrors, issuePlace: strin
 
   const country = countries.find(([code]) => code === nationalityCode);
   const normalizedIssuePlace = normalizeForCompare(issuePlace);
-  const normalizedCountryName = country ? normalizeForCompare(country[1]) : "";
+  const normalizedCountryNames = country ? Object.values(country[1]).map(normalizeForCompare) : [];
 
-  if (normalizedIssuePlace === nationalityCode.toLowerCase() || normalizedIssuePlace === normalizedCountryName) {
+  if (normalizedIssuePlace === nationalityCode.toLowerCase() || normalizedCountryNames.includes(normalizedIssuePlace)) {
     errors.passportIssuePlace = translations[locale].validation.issuePlaceNotNationality;
   }
 }

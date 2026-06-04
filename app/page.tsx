@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
+import { ApplicationApiError, submitApplication } from "../lib/api";
 import { countries, languages } from "../lib/data";
 import { Locale, localeCodes, localeMeta, translations } from "../lib/i18n";
 import {
@@ -26,26 +27,26 @@ const uploadFields: {
   multiple?: boolean;
   name: FileFieldName;
 }[] = [
-  {
-    accept: ".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf",
-    name: "passportCopy",
-  },
-  {
-    accept: ".jpg,.jpeg,.png,image/jpeg,image/png",
-    multiple: true,
-    name: "personalPhotos",
-  },
-  {
-    accept: ".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf",
-    name: "signatureImage",
-  },
-  {
-    accept: ".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf",
-    name: "endorsementFile",
-  },
-];
+    {
+      accept: ".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf",
+      name: "passportCopy",
+    },
+    {
+      accept: ".jpg,.jpeg,.png,image/jpeg,image/png",
+      multiple: true,
+      name: "personalPhotos",
+    },
+    {
+      accept: ".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf",
+      name: "signatureImage",
+    },
+    {
+      accept: ".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf",
+      name: "endorsementFile",
+    },
+  ];
 
-type StatusKey = "" | "invalid" | "ready";
+type StatusKey = "" | "failed" | "invalid" | "ready" | "submitted" | "submitting";
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("ar");
@@ -53,12 +54,14 @@ export default function Home() {
   const [files, setFiles] = useState<FileState>(emptyFiles);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<StatusKey>("");
+  const [apiError, setApiError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const t = translations[locale];
   const meta = localeMeta[locale];
   const countryOptions = useMemo(() => getCountryOptions(locale), [locale]);
   const nativeLanguageOptions = useMemo(() => getNativeLanguageOptions(locale), [locale]);
-  const statusMessage = status ? t.status[status] : "";
+  const statusMessage = status === "failed" && apiError ? apiError : status ? t.status[status] : "";
 
   useEffect(() => {
     document.documentElement.lang = meta.lang;
@@ -68,12 +71,16 @@ export default function Home() {
   function updateValue(name: keyof FormValues, value: string) {
     setValues((current) => ({ ...current, [name]: value }));
     setErrors((current) => ({ ...current, [name]: undefined }));
+    setApiError("");
+    setStatus("");
     setIsReady(false);
   }
 
   function updateFile(name: FileFieldName, event: ChangeEvent<HTMLInputElement>) {
     setFiles((current) => ({ ...current, [name]: Array.from(event.target.files ?? []) }));
     setErrors((current) => ({ ...current, [name]: undefined }));
+    setApiError("");
+    setStatus("");
     setIsReady(false);
   }
 
@@ -99,6 +106,8 @@ export default function Home() {
 
     const normalized = normalizeValues(values);
     setValues(normalized);
+    setApiError("");
+    setStatus("");
 
     const nextErrors = {
       ...validateValues(normalized, locale),
@@ -117,20 +126,31 @@ export default function Home() {
       return;
     }
 
-    const payload = {
-      ...normalized,
-      files: Object.fromEntries(
-        Object.entries(files).map(([name, currentFiles]) => [
-          name,
-          currentFiles.map((file) => ({ name: file.name, size: file.size, type: file.type })),
-        ])
-      ),
-    };
+    setStatus("submitting");
+    setIsSubmitting(true);
 
-    window.dispatchEvent(new CustomEvent("quran-competition-form:ready", { detail: payload }));
-    console.info("Quran competition payload", payload);
-    setStatus("ready");
-    setIsReady(true);
+    try {
+      const result = await submitApplication(normalized, files, locale, {
+        nationality: getOptionLabel(countries, normalized.nationality, locale),
+        nativeLanguage: getOptionLabel(languages, normalized.nativeLanguage, locale),
+        residenceCountry: getOptionLabel(countries, normalized.residenceCountry, locale),
+      });
+
+      window.dispatchEvent(new CustomEvent("quran-competition-form:submitted", { detail: result }));
+      console.info("Quran competition application submitted", result);
+      setStatus("submitted");
+      setIsReady(true);
+    } catch (error) {
+      const message = error instanceof ApplicationApiError
+        ? [error.message, ...error.errors].filter(Boolean).join(" ")
+        : t.status.failed;
+
+      setApiError(message);
+      setStatus("failed");
+      setIsReady(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -353,8 +373,9 @@ export default function Home() {
         <section className="form-actions">
           <p className={isReady ? "success" : ""}>{statusMessage || t.form.consent}</p>
           <div>
-            <button className="secondary-button" type="button">{t.actions.saveDraft}</button>
-            <button type="submit">{t.actions.submit}</button>
+            <button disabled={isSubmitting} type="submit">
+              {isSubmitting ? t.actions.submitting : t.actions.submit}
+            </button>
           </div>
         </section>
       </form>
@@ -502,22 +523,28 @@ function UploadField({
 }
 
 function getCountryOptions(locale: Locale) {
-  const fallback = new Map(countries);
-
-  try {
-    const displayNames = new Intl.DisplayNames([localeMeta[locale].countryLocale], { type: "region" });
-    return countries.map(([code]) => [code, displayNames.of(code) ?? fallback.get(code) ?? code] as const);
-  } catch {
-    return countries;
-  }
+  return getLocalizedOptions(countries, locale);
 }
 
 function getNativeLanguageOptions(locale: Locale) {
-  const otherLabels: Record<Locale, string> = {
-    ar: "Other",
-    en: "Other",
-    fr: "Autre",
-  };
+  return getLocalizedOptions(languages, locale);
+}
 
-  return languages.map(([code, label]) => [code, code === "OTHER" ? otherLabels[locale] : label] as const);
+function getLocalizedOptions(
+  options: readonly (readonly [string, { ar: string; en: string; fr: string }])[],
+  locale: Locale
+) {
+  const collator = new Intl.Collator(localeMeta[locale].countryLocale);
+
+  return [...options.map(([code, labels]) => [code, labels[locale]] as const)].sort(([, first], [, second]) =>
+    collator.compare(first, second)
+  );
+}
+
+function getOptionLabel(
+  options: readonly (readonly [string, { ar: string; en: string; fr: string }])[],
+  code: string,
+  locale: Locale
+) {
+  return options.find(([optionCode]) => optionCode === code)?.[1][locale] ?? code;
 }
